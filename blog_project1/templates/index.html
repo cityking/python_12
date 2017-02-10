@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block article_content %}
+<article>
+	{% include 'left.html' %}
+	{% include 'topnews.html' %}
+	{% include 'right.html' %}
+</article>
+{% endblock %}

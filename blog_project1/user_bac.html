@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block article_content %}
+<article>
+	<div class="l_box f_l">
+	<h3>
+	{% if user.is_authenticated %}
+	<a href="{% url 'user_detail' %}?tag_id=1">我的信息</a>&nbsp|&nbsp<a href="{% url 'user_detail' %}?tag_id=2">我的博客</a>&nbsp|&nbsp<a href="{% url 'user_detail' %}?tag_id=3">添加博客</a>
+	</h3>
+	{% if tag_id == 1 %}
+	<br>
+	<div style="font-size:20px">
+	<p>用户名：{{user.username}}</p>
+	<br>
+	<p>qq:{{user.qq}}</p>
+	<br>
+	<p>mobile:{{user.mobile}}</p>
+	<br>
+	<p>url:{{user.url}}</p>
+	<br>
+	<p>email:{{user.email}}</p>
+	{% endif %}
+	{% if tag_id == 2 %}
+	{% include 'topnews.html' %}
+	{% endif %}
+	{%else%}
+	<h3><a href="{% url 'login' %}">去登录</a>|<a href="{% url 'regist' %}">去注册</a></h3>
+	{% endif %}
+	{% if tag_id == 3 %}
+		<br>
+		<br>
+	{% if flag == 'update' %}
+	
+		<h3>修改博客</h3>
+		<br>
+	    <form action="{% url 'article_update' article.id %}" method="post">
+	{%else%}
+	<h3>添加博客</h3>
+		<br>
+	    <form action="{% url 'user_detail' %}" method="post">
+	{%endif%}
+
+		{% csrf_token %}
+	
+	    <p>标题：{{article_form.title}} </p>
+	    <p>描述：{{article_form.desc}} </p>
+	    <p>内容：{{article_form.content}} </p>
+	    <p>是否推荐{{article_form.is_recommend}} </p>
+	    <p>类型：{{article_form.category}} </p>
+	    <p>标签：{{article_form.tag}} </p>
+	
+		<div style="display: none;">	{{article_form.user}} </div>
+		<br>
+	{% if flag == 'update' %}
+	   <p><input name="submit" type="submit" id="submit" tabindex="5" value="修改" class="button" />
+	{%else%}
+	   <p><input name="submit" type="submit" id="submit" tabindex="5" value="添加" class="button" />
+	
+	{% endif %}
+	
+	    </form>
+
+	{% endif %}
+	</div>
+	</div>
+	{% include 'right.html' %}
+</article>
+{% endblock %}

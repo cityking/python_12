@@ -1,0 +1,96 @@
+(1062, "Duplicate entry 'cityking' for key 'username'")
+login() takes exactly 1 argument (2 given)
+login() takes exactly 1 argument (2 given)
+login() takes exactly 1 argument (2 given)
+login() takes exactly 1 argument (2 given)
+Article matching query does not exist.
+'filter' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_static
+admin_urls
+cache
+i18n
+l10n
+log
+static
+staticfiles
+tz
+''filter'' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_static
+admin_urls
+cache
+i18n
+l10n
+log
+static
+staticfiles
+tz
+'filter' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_static
+admin_urls
+cache
+i18n
+l10n
+log
+static
+staticfiles
+tz
+'myFilter' is not a registered tag library. Must be one of:
+admin_list
+admin_modify
+admin_static
+admin_urls
+cache
+i18n
+l10n
+log
+static
+staticfiles
+tz
+Non-ASCII character '\xe4' in file /mydisk/workspace/blog_project1/blog_app/templatetags/myFilter.py on line 6, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details (myFilter.py, line 6)
+name 'month_upper' is not defined
+name 'month_upper' is not defined
+name 'month_upper' is not defined
+unsupported operand type(s) for -: 'NoneType' and 'int'
+unsupported operand type(s) for -: 'NoneType' and 'int'
+unsupported operand type(s) for -: 'NoneType' and 'int'
+unsupported operand type(s) for -: 'NoneType' and 'int'
+int() argument must be a string or a number, not 'NoneType'
+Could not parse the remainder: '>1' from 'page>1'
+global name 'page_count' is not defined
+Article matching query does not exist.
+global name 'Comment' is not defined
+The Comment could not be created because the data didn't validate.
+comment.html
+The Comment could not be created because the data didn't validate.
+'NoneType' object has no attribute 'id'
+Cannot resolve keyword u'11' into field. Choices are: article, article_id, comment, content, date_publish, email, id, pid, pid_id, url, user, user_id, username
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.
+The Comment could not be created because the data didn't validate.
+'function' object has no attribute 'order_by'
+Reverse for 'archive' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+local variable 'year' referenced before assignment
+global name 'Ad' is not defined
+Could not parse the remainder: '{{paginator.num_pages}}' from '{{paginator.num_pages}}'
+global name 'page_data' is not defined
+'dict' object has no attribute 'paginator'
+'dict' object has no attribute 'paginator'
+local variable 'articles' referenced before assignment
+Reverse for 'cate_article' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+Reverse for 'article_update' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+Reverse for 'article_update' with arguments '()' and keyword arguments '{}' not found. 1 pattern(s) tried: ['article_update/(?P<id>\\d+)/$']
+Reverse for 'user.html' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []

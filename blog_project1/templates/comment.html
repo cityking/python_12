@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<head>
+<meta charset="utf-8">
+<title>添加评论</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href='{% static "css/base.css" %}' rel="stylesheet">
+<link href='{% static "css/index.css" %}' rel="stylesheet">
+<script type="text/javascript" src='{% static "js/jquery.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/sliders.js" %}'></script>
+</head>
+
+    <div id="commentform">
+    <h3 id="respond">Add your comment now</h3>
+	{% if not user.is_authenticated%}
+    <div class='login_info'>还没有登陆？可以登录后再评论哦。<big><a href="">&raquo;去登录</a>&nbsp;<a href="">&raquo;去注册</a></big></div>
+	{% endif %}
+
+    <form action="{% url 'comment_post' %}" method="post" id="commentform">
+	{% csrf_token %}
+
+    <p>{{comment_form.username}}    <label for="author">Name (required)</label></p>
+
+    <p>{{comment_form.email}}    <label for="email">Email (Will NOT be published) (required)</label></p>
+
+    <p>{{comment_form.url}}    <label for="url">URL</label></p>
+
+
+    <!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code class=&quot;&quot; title=&quot;&quot; data-url=&quot;&quot;&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; &lt;pre class=&quot;&quot; title=&quot;&quot; data-url=&quot;&quot;&gt; &lt;span class=&quot;&quot; title=&quot;&quot; data-url=&quot;&quot;&gt; </small></p>-->
+
+    <p>{{comment_form.content}} 
+
+	<div style="display: none;">	{{comment_form.article}} </div>
+	<div style="display: none;">	{{comment_form.pid}} </div>
+   <p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit" class="button" />
+
+    <input type="hidden" name="comment_post_ID" value="542" />
+    <p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="999f94e7bf" /></p><p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="87"/></p></p>
+
+    </form>
+    </div>
+    </div>
+
+

@@ -1,0 +1,108 @@
+{% load staticfiles %}
+    <div class="r_box f_r">
+    <div class="tit01">
+      <h3>关注我</h3>
+{% if user.is_authenticated%}
+	欢迎{{user.username}}
+	<a href="{%url 'logout'%}">注销</a>
+{% else %}
+<a href="{% url 'login' %}">登录</a> <a href="{% url 'regist' %}">注册</a>
+{% endif %}
+<!--
+      <div class="gzwm">
+        <ul>
+          <li><a class="xlwb" href="{{facebook}}" target="_blank">新浪微博</a></li>
+          <li><a class="txwb" href="#" target="_blank">腾讯微博</a></li>
+          <li><a class="rss" href="portal.php?mod=rss" target="_blank">RSS</a></li>
+          <li><a class="wx" href="mailto:admin@admin.com">邮箱</a></li>
+        </ul>
+      </div>
+-->
+    </div>
+    <!--tit01 end-->
+    <div class="moreSelect" id="lp_right_select">
+      <script>
+window.onload = function ()
+{
+  var oLi = document.getElementById("tab").getElementsByTagName("li");
+  var oUl = document.getElementById("ms-main").getElementsByTagName("div");
+
+  for(var i = 0; i < oLi.length; i++)
+  {
+    oLi[i].index = i;
+    oLi[i].onmouseover = function ()
+    {
+      for(var n = 0; n < oLi.length; n++) oLi[n].className="";
+      this.className = "cur";
+      for(var n = 0; n < oUl.length; n++) oUl[n].style.display = "none";
+      oUl[this.index].style.display = "block"
+    }
+  }
+}
+</script>
+      <div class="ms-top">
+        <ul class="hd" id="tab">
+          <li class="cur"><a href="/">浏览排行</a></li>
+          <li><a href="/">评论排行</a></li>
+          <li><a href="/">站长推荐</a></li>
+        </ul>
+      </div>
+      <div class="ms-main" id="ms-main">
+        <div style="display: block;" class="bd bd-news" >
+          <ul>
+		{% for article_click in article_click_list %}
+            <li><a href="{% url 'article' %}?id={{article_click.id}}" target="_blank">{{article_click.title}}</a></li>
+		{% endfor %}
+          </ul>
+        </div>
+        <div  class="bd bd-news">
+          <ul>
+		{% for article_comment in article_comment_list %}
+            <li><a href="{% url 'article' %}?id={{article_comment.id}}" target="_blank">{{article_comment.title}}</a></li>
+		{% endfor %}
+
+                 </ul>
+        </div>
+        <div class="bd bd-news">
+          <ul>
+		{% for article_recommend in article_recommend_list %}
+            <li><a href="{% url 'article' %}?id={{article_recommend.id}}" target="_blank">{{article_recommend.title}}</a></li>
+		{% endfor %}
+         </ul>
+        </div>
+      </div>
+      <!--ms-main end -->
+    </div>
+    <!--切换卡 moreSelect end -->
+
+    <div class="cloud">
+      <h3>标签云</h3>
+      <ul>
+	{% for tag in tags %}
+        <li><a href="{% url 'tag_article' %}?tag_id={{tag.id}}">{{tag.name}}</a></li>
+	{% endfor %}
+      </ul>
+    </div>
+    <div class="tuwen">
+      <h3>文章归档</h3>
+      <ul>
+        <li>
+	{% for date in distinct_date_list %}
+          <p><span class="tutime font-size-18"><a href='{% url "archive" %}?date={{date}}'>{{date}}</a></span></p>
+	{% endfor %}
+        </li>
+          </ul>
+    </div>
+    <div class="links">
+      <h3>友情链接</h3>
+      <ul>
+        <li><a href="http://www.runoob.com/python/python-tutorial.html">Python基础教程|菜鸟教程</a></li>
+        <li><a href="https://www.python.org/">Python官网</a></li>
+        <li><a href="https://www.djangoproject.com/start/overview/">django官网</a></li>
+        <li><a href="https://www.djangoproject.com/start/overview/">django基础教程|自学堂</a></li>
+        <li><a href="http://www.maiziedu.com/course/python-all/0-1/">Python Web视频教程|麦子学院</a></li>
+        <li><a href="http://www.maiziedu.com/course/python-all/0-1/">Python基础视频教程|极客学院</a></li>
+      </ul>
+    </div>
+  </div>
+

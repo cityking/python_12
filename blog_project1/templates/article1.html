@@ -1,0 +1,63 @@
+{% load staticfiles %}
+{% load myFilter %}
+  <div class="l_box f_l" >
+    <div class="postdate">
+      <div class="month">{{article.date_publish | date:"m" | month_upper }}</div>
+      <div class="date">{{article.date_publish | date:"d"}}</div>
+    </div>
+    <div class="title">
+        <h2><a href="http://www.baidu.org/?p=542" rel="bookmark" title="{{article.title}}">{{article.title}}</a></h2>
+        <div class="postmeta">
+          <span class="postmeta_author">{{article.user}}</span>
+          <span class="postmeta_category"><a href="http://www.baidu.org/?cat=14" rel="category">{{article.category}}</a></span>          
+          <span class="postmeta_time">{{article.date_publish | date:'Y-m-d'}}</span>
+        </div><!-- end postmeta -->
+        <div class="entry" >
+         {{ article.content|safe }} 
+        </div>
+        <span class="tags">
+	{% for tag in article.tag.all %}
+	<a href="http://www.baidu.org/?tag=android" rel="tag">{{tag.name}}</a>
+	{% endfor %}
+	
+	<div class="info">
+
+        Address:  <a href="http://127.0.0.1:8000/article/?id={{article.id}}" rel="bookmark" title="{{article.title}}">http://127.0.0.1:8000/article/?id={{article.id}}</a>
+      </div>
+
+	<a href="{% url 'article_update' article.id %}">修改</a>
+      <div class="commentstitle"><span class="trackback"><a href="http://www.baidu.org/wp-trackback.php?p=542" rel="trackback" title="Trackback URI"></a></span><h3 id="comments"><span class="commentsnumber">only {{comments.count}} comment</span> untill now</h3></div>
+
+<h4><a href="{% url 'comment_post' %}?id={{article.id}}">添加评论</a></h4>
+      <ol class="commentlist">
+	{% for comment in comment_list %}
+                <li class="alt" id="comment-59418">
+                <div class="top"><a href='http://www.yopoing.com' rel='external nofollow' class='url'>{{comment.username}}</a><span class="time"> @ <a href="#comment-59418" title="">{{comment.date_publish | date:'Y-m-d h:i'}}</a></span></div>
+                <div><img alt='' src='{% static "images/default.jpg"%}' class='avatar avatar-32 photo' height='32' width='32' /></div>
+                
+                <div class="body">
+                                <p>{{comment.content}}</p>
+
+			<a href="{% url 'comment_post' %}?id={{article.id}}&&pid={{comment.id}}">回复</a>
+                </div>
+              </li>
+
+
+
+		{% for comment_children in comment.children_comment %}
+              	<li class="alt">
+                <div class="reply">
+                  <div class="top"><a href="http://xnbing.org" rel="external nofollow" class="url">{{ comment_children.username }}</a><span class="time"> @ <a href="#comment-59543" title="">{{ comment_children.date_publish | date:'Y-m-d h:i:s' }}</a></span></div>
+                  <div><img alt="" src="http://1.gravatar.com/avatar/f7c05a53670301b5b3c226eb8c2b93c0?s=32&amp;d=&amp;r=G" class="avatar avatar-32 photo" height="32" width="32"></div>
+                  
+                  <div class="body">
+                          {{ comment_children.content }} </div>
+			<a href="{% url 'comment_post' %}?id={{article.id}}&&pid={{comment.id}}">回复</a>
+                </div>
+              </li>
+
+		{% endfor %}
+	{% endfor %}
+      </ol>
+  </div>
+

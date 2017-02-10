@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{{site_name}}</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href='{% static "css/base.css" %}' rel="stylesheet">
+<link href='{% static "css/index.css" %}' rel="stylesheet">
+<script type="text/javascript" src='{% static "js/jquery.min.js" %}'></script>
+<script type="text/javascript" src='{% static "js/sliders.js" %}'></script>
+<script type="text/javascript" src='{% static "js/editor/kindeditor-4.1.10/kindeditor-all.js" %}'></script>
+<script type="text/javascript" src='{% static "js/editor/kindeditor-4.1.10/lang.zh_CN.js" %}'></script>
+<script type="text/javascript" src='{% static "js/editor/kindeditor-4.1.10/config.js" %}'></script>
+<!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+</head>
+<body>
+<header>
+  <div class="logo">
+      <h1>{{site_name}}</h1>
+      <p>专注于python的学习,python学习笔记总结，python学习资料收集</p>
+  </div>
+  <nav id="topnav" class="f_r">
+    <ul>
+     	 <a href="{% url 'index' %}" target="_blank">首页</a>
+	 <a href="{% url 'user_detail' %}" target="_blank">关于我</a>
+{% for category in category_list %}
+	<a href="{% url 'cate_article' %}?category_id={{category.id}}" target="_blank">{{category.name}}</a>
+{% endfor %}
+    </ul>
+
+    <script src="js/nav.js"></script>
+  </nav>
+</header>
+{% block article_content %}
+{% endblock %}
+<footer>
+
+  <p class="ft-copyright">{{site_name}} 蜀ICP备xxxxxxx号-1</p>
+  <div id="tbox"> <a id="togbook" href="/"></a> <a id="gotop" href="javascript:void(0)"></a> </div>
+</footer>
+
+
+</body>
+</html>
