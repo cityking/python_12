@@ -4153,14 +4153,6 @@ _extend(KUploadButton, {
 		for(var k in extraParams){
 			hiddenElements.push('<input type="hidden" name="' + k + '" value="' + extraParams[k] + '" />');
 		}
-
-        	var csrfitems = document.getElementsByName("csrfmiddlewaretoken");  
-        	var csrftoken = "";  
-        	if(csrfitems.length > 0)  
-        	{  
-        	         csrftoken = csrfitems[0].value;  
-        	 }
-
 		var html = [
 			'<div class="ke-inline-block ' + cls + '">',
 			(options.target ? '' : '<iframe name="' + target + '" style="display:none;"></iframe>'),

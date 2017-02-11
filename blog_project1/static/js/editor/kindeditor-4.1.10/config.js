@@ -1,7 +1,7 @@
 KindEditor.ready(function(K) {
     window.editor = K.create('#id_content',{
-        width:'500px',
+        width:'800px',
         height:'200px',
-        uploadJson: '/admin/upload/kindeditor',
+	uploadJson: '/admin/upload/kindeditor',
         });
 });

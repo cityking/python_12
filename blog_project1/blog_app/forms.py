@@ -5,8 +5,7 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
 		fields = ['content','username', 'email', 'url', 'article', 'pid']	
-
 class ArticleForm(forms.ModelForm):
 	class Meta:
 		model = Article
-                fields = ['title','desc','content','is_recommend', 'user', 'category', 'tag'] 
+		fields = ['title', 'desc', 'content', 'is_recommend', 'user', 'category', 'tag']

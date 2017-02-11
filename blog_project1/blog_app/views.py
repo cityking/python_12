@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import login, logout, authenticate
 import logging
 from .models import User,Article,Ad,Comment,Tag,Category
-from .forms import CommentForm, ArticleForm
+from .forms import CommentForm,ArticleForm 
 from django.db.models import Count
 from django.core.paginator import Paginator,InvalidPage,EmptyPage,PageNotAnInteger
 from rest_framework.views import APIView
@@ -17,9 +17,9 @@ from .serializers import ArticleSerializer
 
 def global_setting(request):
 	comment_count_list = Comment.objects.values('article').annotate(comment_count=Count('article')).order_by('-comment_count')
-	article_comment_list = [Article.objects.get(pk=comment['article']) for comment in comment_count_list]
-	article_click_list = Article.objects.order_by('click_count')
-	article_recommend_list = Article.objects.filter(is_recommend=True)
+	article_comment_list = [Article.objects.get(pk=comment['article']) for comment in comment_count_list][:5]
+	article_click_list = Article.objects.order_by('click_count')[:5]
+	article_recommend_list = Article.objects.filter(is_recommend=True)[:5]
 	tags = Tag.objects.all()
 	site_name = settings.SITE_NAME
 	facebook = settings.FACEBOOK
@@ -206,7 +206,7 @@ def tag_article(request):
 		page_type = request.GET.get('page_type')
 	except ValueError:
 		page = 1
-	page_data = 2
+	page_data = 4
 	p_article = paginator_article(request, articles, page, page_data, page_type)	
 	paginator = p_article['paginator']
 	articles = p_article['articles']
@@ -218,8 +218,6 @@ def tag_article(request):
 def user_detail(request):
 	try:
 		if request.method == 'POST':
-			import pdb
-			pdb.set_trace()
 			article_form = ArticleForm(request.POST)
 			article_form.save()
 			tag_id = 2
@@ -241,8 +239,8 @@ def user_detail(request):
 			articles = p_article['articles']
 			page = p_article['page']
 		if tag_id == 3:
-			article_form = ArticleForm({'user':request.user})
-			return render(request, 'user.html', locals())
+			article = Article.objects.create(user=request.user, content=" ")
+			article_form = ArticleForm(instance=article)
 	except Exception as e:
 		logger.error(e)
 	return render(request,'user.html',locals())
@@ -278,8 +276,8 @@ def cate_article(request):
 	
 	return render(request, 'index.html', locals())
 
-def article_post(request):
-
-	article_form = ArticleForm(request.POST)
-	article_form.save()
-	return redirect('')
+def article_delete(request):
+	if request.GET.get('id'):
+		article_id = int(request.GET.get('id'))
+		Article.objects.filter(id=article_id).delete()
+		return redirect("/user_detail/?tag_id=2") 

@@ -36,6 +36,6 @@ urlpatterns = [
     url(r'^article_restful/$', views.ArticleListView.as_view(), name='article_restful'),
     url(r'^cate_article/$', views.cate_article, name='cate_article'),
     url(r'^article_update/(?P<id>\d+)/$', views.article_update, name='article_update'),
-    url(r'^article_post/$', views.article_post, name='article_post'),
+    url(r'^article_delete/$', views.article_delete, name='article_delete'),
 
 ]

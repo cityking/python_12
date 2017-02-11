@@ -15,7 +15,10 @@
 	</span>
 	<span class="dtime f_l">{{ article.date_publish | date:'Y-m-d'}}</span>
 	<span class="viewnum f_r">浏览（<a href="/">{{ article.click_count }}</a>）</span>
-	<span class="pingl f_r">评论（<a href="/">{{ article.comment_set.all.count }}</a>）</span></p>
+	<span class="pingl f_r">评论（<a href="/">{{ article.comment_set.all.count }}</a>）</span>
+	{% if tag_id == 2 %}
+	<span class="pingl f_r"><a href="{% url 'article_delete' %}?id={{article.id}}">删除</a></span></p>
+	{% endif %}
 
         </ul>
       </div>
@@ -32,5 +35,6 @@
 	{% endif %}
    </ul>
    </div>
+
   </div>
 

@@ -94,3 +94,8 @@ Reverse for 'cate_article' with arguments '()' and keyword arguments '{}' not fo
 Reverse for 'article_update' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
 Reverse for 'article_update' with arguments '()' and keyword arguments '{}' not found. 1 pattern(s) tried: ['article_update/(?P<id>\\d+)/$']
 Reverse for 'user.html' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+editor/kindeditor.html
+js/editor/kindeditor.html
+Article matching query does not exist.
+Article matching query does not exist.
+Article matching query does not exist.

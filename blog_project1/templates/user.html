@@ -29,14 +29,14 @@
 	{% endif %}
 
 	{% if tag_id == 3 %}
-		<form enctype="multipart/form-data" action="{% url 'user_detail' %}" method="post">
+		<form action="{% url 'article_update' article.id%}" method="post">
 			{% csrf_token %}
-			{{article_form.as_p}}
+			{{ article_form.as_p }}
 			<input type="submit" value="submit">
-		</form>	
+		</form>
 	{% endif %}
 
-
+	
 	{%else%}
 	<h3><a href="{% url 'login' %}">去登录</a>|<a href="{% url 'regist' %}">去注册</a></h3>
 	{% endif %}
