@@ -1,6 +1,6 @@
 # coding: utf-8
 from django.shortcuts import render, redirect
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse,HttpResponseRedirect,HttpResponseNotFound
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import login, logout, authenticate
@@ -281,3 +281,8 @@ def article_delete(request):
 		article_id = int(request.GET.get('id'))
 		Article.objects.filter(id=article_id).delete()
 		return redirect("/user_detail/?tag_id=2") 
+
+
+
+#def page_not_found(request):
+#	return HttpResponseNotFound('<h3>404 error</h3><p>page not found</p>')

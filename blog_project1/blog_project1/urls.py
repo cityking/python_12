@@ -39,3 +39,5 @@ urlpatterns = [
     url(r'^article_delete/$', views.article_delete, name='article_delete'),
 
 ]
+
+#handler404 = 'blog_app.views.page_not_found'
