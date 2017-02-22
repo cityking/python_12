@@ -13,7 +13,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from .serializers import ArticleSerializer 
-
+from django.views.decorators.cache import cache_page
 
 def global_setting(request):
 	comment_count_list = Comment.objects.values('article').annotate(comment_count=Count('article')).order_by('-comment_count')
@@ -43,6 +43,7 @@ def paginator_article(request, articles, page, page_data, page_type):
 		articles = paginator.page(1)
 	return {'paginator':paginator, 'articles':articles, 'page':page}
 
+@cache_page(60*15)
 def index(request):
 
 	try:

@@ -31,7 +31,7 @@ SECRET_KEY = 'e2(y!p1iwy7o2(-g^dnkjt=#8j)s)%_5e4xcu$o%8-6^-#cf#6'
 #ALLOWED_HOSTS = []
 
 #关闭debug
-if socket.gethostname()=='localhost.localdomain1':
+if socket.gethostname()=='localhost.localdomain':
         DEBUG=TEMPLATE_DEBUG=True
         DATABASE_NAME = 'blogdb1'
 else:
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_project1.urls'
@@ -93,10 +95,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'blogdb1',
 	'USER': 'root'
+    },
+    'sqlite3': {                                                                
+        'ENGINE': 'django.db.backends.sqlite3',                                 
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),                           
     }
 }
 
 
+DATABASE_ROUTERS=['blog_project1.cache_db_router.CacheDbRouter']
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
@@ -162,9 +169,51 @@ LOGGING = {
 	},
 }
 
+
+##Filesystem缓存
+#CACHES = {
+#	'default': {
+#		'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+#		'LOCATION': '/var/tmp/django_cache',
+#	}
+#}
+
+#Database 缓存
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+		'LOCATION': 'my_cache_table',
+	},
+	'apps': {
+		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+		'LOCATION': 'api_cache_table',
+	}
+}
+
+#LocMemCache 缓存
+#CACHES = {
+#	'default': {
+#		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#		'LOCATION': 'default_locmem_cache',
+#	},
+#	'apps': {
+#		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#		'LOCATION': 'apps_locmem_cache',
+#	}
+#}
+
+##Dummy 缓存
+#CACHES = {
+#	'default': {
+#		'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+#	},
+#}
+
+CACHE_MIDDLEWARE_SECONDS=20
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 
 
 FACEBOOK = "http://www.facebook.com"
 SITE_NAME = 'cityking的个人博客'
+
