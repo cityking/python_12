@@ -178,17 +178,17 @@ LOGGING = {
 #	}
 #}
 
-#Database 缓存
-CACHES = {
-	'default': {
-		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-		'LOCATION': 'my_cache_table',
-	},
-	'apps': {
-		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-		'LOCATION': 'api_cache_table',
-	}
-}
+##Database 缓存
+#CACHES = {
+#	'default': {
+#		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#		'LOCATION': 'my_cache_table',
+#	},
+#	'apps': {
+#		'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+#		'LOCATION': 'api_cache_table',
+#	}
+#}
 
 #LocMemCache 缓存
 #CACHES = {
@@ -208,6 +208,17 @@ CACHES = {
 #		'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
 #	},
 #}
+
+#Redis 缓存
+CACHES = {
+	'default':{
+		'BACKEND':'redis_cache.RedisCache',
+		'LOCATION':['127.0.0.1:6379','127.0.0.1:6380'],
+		'OPTIONS':{
+			'DB':1,
+		},
+	}
+}
 
 CACHE_MIDDLEWARE_SECONDS=20
 MEDIA_URL = '/uploads/'

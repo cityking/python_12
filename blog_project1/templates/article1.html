@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load myFilter %}
+{% load cache %}
+{% cache 60 article_cache %}
   <div class="l_box f_l" >
     <div class="postdate">
       <div class="month">{{article.date_publish | date:"m" | month_upper }}</div>
@@ -60,4 +62,5 @@
 	{% endfor %}
       </ol>
   </div>
+{% endcache %}
 
